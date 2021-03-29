@@ -12,6 +12,9 @@ on:
     - cron: 0 20 * * *
   release:
     types: [published]
+  push:
+    branches:
+      - master
 
 jobs:
 
@@ -97,6 +100,13 @@ jobs:
         with:
           name: OpenWrt_firmware
           path: ./bin/targets/
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: OpenWrt firmware
+          path: ./artifact/    
+          
   
 
       - name: Upload release asset
